@@ -3,7 +3,10 @@ use k8scrd by controller
 
 # init env & code
 
-参考sampla-controller，创建pkg/apis/group/v1
+reference kubenetes/sampla-controller，create pkg/apis/group/v1
+```go
+mkdir pkg/apis/group/v1
+```
 
 > You can copy from sampla-controller
 

@@ -1,13 +1,16 @@
 # controller-crd
-use k8scrd by controller
+Using k8scrd by controller
 
 # init env & code
 
-参考sampla-controller，创建pkg/apis/group/v1
+reference kubenetes/sampla-controller，create pkg/apis/group/v1
+```go
+mkdir pkg/apis/group/v1
+```
 
 > You can copy from sampla-controller
 
-add doc.go,regester.go,types.go and document hack
+Added doc.go,register.go,types.go and document hack
 
 ```
 .
@@ -39,9 +42,9 @@ init you hack script
 vim update-codegen.sh
 ```
 
-1. you need to revise the  update-codegen.sh
+1. you need to revise the update-codegen.sh
 2. go mod vendor
-3. ./update-codegen.sh   **（as you can see, this is base on code-generate）**
+3. ./update-codegen.sh   **（As you can see, this is based on code-generate）**
 
 ```bash
 "${CODEGEN_PKG}/generate-groups.sh" "deepcopy,client,informer,lister" \

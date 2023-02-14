@@ -2,10 +2,12 @@ package main
 
 import (
 	clientset "controller-crd/pkg/generated/clientset/versioned"
-	"controller-crd/pkg/generated/informers/externalversions"
+	groupkindinformers_externalversions "controller-crd/pkg/generated/informers/externalversions"
+
 	"k8s.io/client-go/informers"
 	kubeinformers "k8s.io/client-go/informers"
 	"k8s.io/client-go/kubernetes"
+	"k8s.io/client-go/tools/cache"
 	"k8s.io/client-go/tools/clientcmd"
 	"k8s.io/klog/v2"
 	"time"
@@ -31,7 +33,7 @@ func main() {
 	}
 
 	kubeInformerFactory := kubeinformers.NewSharedInformerFactory(kubeClient, time.Second*30)
-	groupKindInformerFactory := externalversions.NewSharedInformerFactory(groupKindClient, time.Second*30)
+	groupKindInformerFactory := groupkindinformers_externalversions.NewSharedInformerFactory(groupKindClient, time.Second*30)
 
 	controller := NewController(kubeClient, groupKindClient,
 		kubeInformerFactory.Apps().V1().Deployments(),

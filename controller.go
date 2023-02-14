@@ -5,7 +5,7 @@ import (
 	"controller-crd/pkg/generated/clientset/versioned/scheme"
 	groupkindscheme "controller-crd/pkg/generated/clientset/versioned/scheme"
 	"controller-crd/pkg/generated/informers/externalversions/groupkind/v1alpha1"
-	alpha1 "controller-crd/pkg/generated/listers/groupkind/v1alpha1"
+	groupkind "controller-crd/pkg/generated/listers/groupkind/v1alpha1"
 	corev1 "k8s.io/api/core/v1"
 	utilruntime "k8s.io/apimachinery/pkg/util/runtime"
 	v12 "k8s.io/client-go/informers/apps/v1"
@@ -62,12 +62,21 @@ type Controller struct {
 	deploymentsLister  v15.DeploymentLister
 	serviceLister      v16.ServiceLister
 	ingressLister      v17.IngressLister
-	foosLister         alpha1.FooLister
+	foosLister         groupkind.FooLister
 	foosSynced         func() bool
 }
 
-func (c Controller) enqueueApp(obj interface{}) {
-
+// enqueueApp takes a App resource and converts it into a namespace/name
+// string which is then put onto the work queue. This method should *not* be
+// passed resources of any type other than App.
+func (c *Controller) enqueueApp(obj interface{}) {
+	var key string
+	var err error
+	if key, err = cache.MetaNamespaceKeyFunc(obj); err != nil {
+		utilruntime.HandleError(err)
+		return
+	}
+	c.workqueue.Add(key)
 }
 
 const controllerAgentName = "controller-crd"

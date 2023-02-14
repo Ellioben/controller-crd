@@ -32,10 +32,26 @@ type Foo struct {
 	Status FooStatus `json:"status"`
 }
 
+type DeploymentSpec struct {
+	Name     string `json:"name"`
+	Image    string `json:"image"`
+	Replicas int32  `json:"replicas"`
+	//add new field
+}
+
+type ServiceSpec struct {
+	Name string `json:"name"`
+}
+
+type IngressSpec struct {
+	Name string `json:"name"`
+}
+
 // FooSpec is the spec for a Foo resource
 type FooSpec struct {
-	DeploymentName string `json:"deploymentName"`
-	Replicas       *int32 `json:"replicas"`
+	Deployment DeploymentSpec `json:"deployment"`
+	Service    ServiceSpec    `json:"service"`
+	Ingress    IngressSpec    `json:"ingress"`
 }
 
 // FooStatus is the status for a Foo resource

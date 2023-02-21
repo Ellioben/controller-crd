@@ -1,7 +1,10 @@
-# controller-crd
-Using k8scrd by controller
+# Controller for crd
+# 1. Usage
+1. Definded the resource for kubenetes
+2. Using custom reource by k8scontroller
+3. Practice & Reference sample-controller
 
-# init env & code
+# 2. Init env & code
 
 reference kubenetes/sampla-controller，create pkg/apis/group/v1
 ```go
@@ -36,7 +39,7 @@ Added doc.go,register.go,types.go and document hack
 
 # config your crd's script
 
-init you hack script
+# 3. init you hack script
 
 ```bash
 vim update-codegen.sh
@@ -65,7 +68,7 @@ Examples:
   $(basename "$0") deepcopy,client github.com/example/project/pkg/client github.com/example/project/pkg/apis "foo:v1 bar:v1alpha1,v1beta1"
 ```
 
-# generate code for custom resources
+# 4. Generate code for custom resources
 
 generate in you pkg
 
@@ -110,7 +113,7 @@ tree -L 3
 
 
 
-#  generate mainfest
+# 5. Generate mainfest
 
 ```bash
 controller-gen crd paths=./...output:crd:dir=config/crd

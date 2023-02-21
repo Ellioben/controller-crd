@@ -108,3 +108,11 @@ tree -L 3
 
 ```
 
+
+
+#  generate mainfest
+
+```bash
+controller-gen crd paths=./...output:crd:dir=config/crd
+```
+

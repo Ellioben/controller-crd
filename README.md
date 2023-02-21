@@ -1,4 +1,4 @@
-# Controller for crd
+# Control custom resources in kubenetes.
 # 1. Usage
 1. Definded the resource for kubenetes
 2. Using custom reource by k8scontroller

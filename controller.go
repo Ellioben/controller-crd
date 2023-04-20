@@ -120,7 +120,6 @@ func NewController(
 			controller.enqueueApp(new)
 		},
 	})
-
 	return controller
 }
 
